@@ -1,34 +1,33 @@
+//important
 'use strict';
 
-// tag::vars[]
-const React = require('react'); // <1>
-const ReactDOM = require('react-dom'); // <2>
-const client = require('./client'); // <3>
-// end::vars[]
+//imports as consts
+const React = require('react');
+const ReactDOM = require('react-dom');
+const client = require('./client');
 
-// tag::app[]
-class App extends React.Component { // <1>
+//App class component to link with api
+class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = { dataGetses: [] };
 	}
 
-	componentDidMount() { // <2>
+	componentDidMount() {
 		client({ method: 'GET', path: '/api/dataGetses' }).done(response => {
 			this.setState({ dataGetses: response.entity._embedded.dataGetses });
 		});
 	}
 
-	render() { // <3>
+	render() {
 		return (
 			<DataList dataGetses={this.state.dataGetses} />
 		)
 	}
 }
-// end::app[]
 
-// tag::employee-list[]
+//Creating the table
 class DataList extends React.Component {
 	render() {
 		const dataGetses = this.props.dataGetses.map(dataGets =>
@@ -50,9 +49,8 @@ class DataList extends React.Component {
 		)
 	}
 }
-// end::employee-list[]
 
-// tag::employee[]
+//getting data for the list
 class DataGets extends React.Component {
 	render() {
 		return (
@@ -66,11 +64,10 @@ class DataGets extends React.Component {
 		)
 	}
 }
-// end::employee[]
 
-// tag::render[]
+//rendering the frontend
 ReactDOM.render(
 	<App />,
 	document.getElementById('react')
 )
-// end::render[]
+
