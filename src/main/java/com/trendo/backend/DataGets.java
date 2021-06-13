@@ -22,6 +22,11 @@ public class DataGets {
 	private String neoPrice;
 	private String linkPrice;
 	private String eosPrice;
+	private String ethPercentage;
+	private String dogePercentage;
+	private String neoPercentage;
+	private String linkPercentage;
+	private String eosPercentage;
 	// local currencies identifiers
 	public static String uuidEth = "e991ba77-d384-48ff-b0a4-40e95ef6b7d6";
 	public static String uuidDOGE = "7bb2339e-b6eb-408c-836f-2894c8751c6d";
@@ -34,13 +39,17 @@ public class DataGets {
 	}
 
 	// calling prices
-	public DataGets(String ethPrice, String dogePrice, String neoPrice, String linkPrice, String eosPrice)
-			throws Exception {
-		this.ethPrice = getPrice(ethPrice);
-		this.dogePrice = getPrice(dogePrice);
-		this.neoPrice = getPrice(neoPrice);
-		this.linkPrice = getPrice(linkPrice);
-		this.eosPrice = getPrice(eosPrice);
+	public DataGets(String ethID, String dogeID, String neoID, String linkID, String eosID) throws Exception {
+		this.ethPrice = getPrice(ethID);
+		this.dogePrice = getPrice(dogeID);
+		this.neoPrice = getPrice(neoID);
+		this.linkPrice = getPrice(linkID);
+		this.eosPrice = getPrice(eosID);
+		this.ethPercentage = getDailyPercentage(ethID);
+		this.dogePercentage = getDailyPercentage(dogeID);
+		this.neoPercentage = getDailyPercentage(neoID);
+		this.linkPercentage = getDailyPercentage(linkID);
+		this.eosPercentage = getDailyPercentage(eosID);
 	}
 
 	// Getters
@@ -68,28 +77,61 @@ public class DataGets {
 		return eosPrice;
 	}
 
-	// Creating response
-	public static HttpResponse<JsonNode> createResponse(String identifier) throws Exception {
+	public String getEthPercentage() {
+		return ethPercentage;
+	}
+
+	public String getDogePercentage() {
+		return dogePercentage;
+	}
+
+	public String getNeoPercentage() {
+		return neoPercentage;
+	}
+
+	public String getLinkPercentage() {
+		return linkPercentage;
+	}
+
+	public String getEosPercentage() {
+		return eosPercentage;
+	}
+
+	// Returning the response object to use in other functions
+	public static HttpResponse<JsonNode> createResponse(String id) throws Exception {
 
 		// General Variables for api
 		String apiKey = "5dcc767e21msh6eb86612ad393aep192d68jsn24088a077eae";
 		String apiHost = "bravenewcoin.p.rapidapi.com";
 		String host = "https://bravenewcoin.p.rapidapi.com/market-cap?assetId=";
+		String percentage = "&percentChange=true";
 		// This one changes each 24h @getToken at
 		// "https://rapidapi.com/BraveNewCoin/api/bravenewcoin?endpoint=apiendpoint_d040b5cb-b6da-4628-bb86-fef663f635dc"
-		String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVXhNRGhHT0VReE56STVOelJCTTBJM1FrUTVOa0l4TWtRd1FrSTJSalJFTVRaR1F6QTBOZyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYnJhdmVuZXdjb2luLmNvbS8iLCJzdWIiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuYnJhdmVuZXdjb2luLmNvbSIsImlhdCI6MTYyMzUyODExNiwiZXhwIjoxNjIzNjE0NTE2LCJhenAiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWSIsInNjb3BlIjoicmVhZDppbmRleC10aWNrZXIgcmVhZDpyYW5raW5nIHJlYWQ6bXdhIHJlYWQ6Z3dhIHJlYWQ6YWdncmVnYXRlcyByZWFkOm1hcmtldCByZWFkOmFzc2V0IHJlYWQ6b2hsY3YgcmVhZDptYXJrZXQtY2FwIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.afVvCNU_UBeWwt5L9ItMBaST1VGzDzcRfSd5Dk_SxHse01g6Ii8b9H24SF8LTXYyqQFgDm0WCl94G2mjlSid0B4O8hfEgt9CMFPIyImZK2ZGvOpwMeGjLsAU-VMKuqLLkkH0GBRzLywUyQ3HLK-JoFAJlEEt5ADt82GnCLEHwd4Y8yqLA4T74ksAikRAUJfjuRCcMrYtPFd6dZZ9VsMzLlX0_uNmTQZ6Ky5joFWYzVm3niSNy8obGVF2JfhT0oJZrWyQlkHHoMZKPFa2pDBXm09fVEIBaY-fRPneOHu8bflJjkpLnIZxntMahTMwSR4-lOfGiScN4SGjdMlnUNYIOw";
+		String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVXhNRGhHT0VReE56STVOelJCTTBJM1FrUTVOa0l4TWtRd1FrSTJSalJFTVRaR1F6QTBOZyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYnJhdmVuZXdjb2luLmNvbS8iLCJzdWIiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuYnJhdmVuZXdjb2luLmNvbSIsImlhdCI6MTYyMzYwNTg3NiwiZXhwIjoxNjIzNjkyMjc2LCJhenAiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWSIsInNjb3BlIjoicmVhZDppbmRleC10aWNrZXIgcmVhZDpyYW5raW5nIHJlYWQ6bXdhIHJlYWQ6Z3dhIHJlYWQ6YWdncmVnYXRlcyByZWFkOm1hcmtldCByZWFkOmFzc2V0IHJlYWQ6b2hsY3YgcmVhZDptYXJrZXQtY2FwIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.wp0l4idk8T7todtfFuSEpK3-oM6oWFc7TsCn5HjB1eNPXJ5Ch1ck8BxJHMTIi2xpDSLkw0-mMmUn24A1HZB0Vtcr-9HucHX-S3wGuL0ek8m16hnznUS2djNs_LGPixjmxeqeWJ-6TPFSy4jKAlF-OfyroiK_aEyPRrOzmHhJreD8SublbVP5ReFBSbgSgQwnXySD_P9yb6czsKR29raFjjqhH1x-sIiKR2K4qVBaVerXNOzogDEFppdbkemseC6xeGoC9MdgGgGmnA4BwJRJRpWZdNUfgFHqIzRHDocuFCZqSuyLakhZxTMtJWox_ypteJEJW_jaSAs4JOlGSVqYZQ";
 
 		// Requesting response and returning it
-		HttpResponse<JsonNode> response = Unirest.get(host + identifier).header("authorization", "Bearer " + token)
+		HttpResponse<JsonNode> response = Unirest.get(host + id + percentage).header("authorization", "Bearer " + token)
 				.header("x-rapidapi-key", apiKey).header("x-rapidapi-host", apiHost).asJson();
 		return response;
+
+	}
+
+	// Getting currency daily price change from response
+	public static String getDailyPercentage(String id) throws Exception {
+		// creating response
+		HttpResponse<JsonNode> response = createResponse(id);
+		// Daily price change as string
+		String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
+				.getJSONObject("pricePercentChange").optString("change24h");
+		return dailyPercentage;
+
 	}
 
 	// Getting currency price from response
 	public static String getPrice(String identifier) throws Exception {
 		// creating response
 		HttpResponse<JsonNode> response = createResponse(identifier);
-		// Price as string
+		// Price as stringy
 		String price = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
 				.optString("price");
 		// Returning rounded price as a string

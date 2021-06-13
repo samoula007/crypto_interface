@@ -37,11 +37,16 @@ class DataList extends React.Component {
 			<table>
 				<tbody>
 					<tr>
-						<th>ETH</th>
-						<th>DOGE</th>
-						<th>NEO</th>
-						<th>LINK</th>
-						<th>EOS</th>
+						<th>$ETH</th>
+						<th>%ETH</th>
+						<th>$DOGE</th>
+						<th>%DOGE</th>
+						<th>$NEO</th>
+						<th>%NEO</th>
+						<th>$LINK</th>
+						<th>%LINK</th>
+						<th>$EOS</th>
+						<th>%EOS</th>
 					</tr>
 					{dataGetses}
 				</tbody>
@@ -56,10 +61,15 @@ class DataGets extends React.Component {
 		return (
 			<tr>
 				<td>{this.props.dataGets.ethPrice}</td>
+				<td>{this.props.dataGets.ethPercentage}</td>
 				<td>{this.props.dataGets.dogePrice}</td>
+				<td>{this.props.dataGets.dogePercentage}</td>
 				<td>{this.props.dataGets.neoPrice}</td>
+				<td>{this.props.dataGets.neoPercentage}</td>
 				<td>{this.props.dataGets.linkPrice}</td>
+				<td>{this.props.dataGets.linkPercentage}</td>
 				<td>{this.props.dataGets.eosPrice}</td>
+				<td>{this.props.dataGets.eosPercentage}</td>
 			</tr>
 		)
 	}
