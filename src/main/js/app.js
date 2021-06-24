@@ -3,8 +3,8 @@
 
 //imports as consts
 const React = require('react');
-const ReactDOM = require('react-dom');
-const client = require('./client');
+const ReactDOM = require('react-dom'); //rendering
+const client = require('./client'); //the client
 
 //App class component to link with api
 class App extends React.Component {

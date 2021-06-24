@@ -34076,7 +34076,8 @@ var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = (function (r
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
- // tag::vars[]
+//important
+ //imports as consts
 
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -34100,15 +34101,13 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-var React = __webpack_require__(/*! react */ "./node_modules/react/index.js"); // <1>
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"); //rendering
 
 
-var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"); // <2>
-
-
-var client = __webpack_require__(/*! ./client */ "./src/main/js/client.js"); // <3>
-// end::vars[]
-// tag::app[]
+var client = __webpack_require__(/*! ./client */ "./src/main/js/client.js"); //the client
+//App class component to link with api
 
 
 var App = /*#__PURE__*/function (_React$Component) {
@@ -34116,7 +34115,6 @@ var App = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(App);
 
-  // <1>
   function App(props) {
     var _this;
 
@@ -34134,7 +34132,6 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      // <2>
       client({
         method: 'GET',
         path: '/api/dataGetses'
@@ -34147,7 +34144,6 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      // <3>
       return /*#__PURE__*/React.createElement(DataList, {
         dataGetses: this.state.dataGetses
       });
@@ -34155,8 +34151,7 @@ var App = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return App;
-}(React.Component); // end::app[]
-// tag::employee-list[]
+}(React.Component); //Creating the table
 
 
 var DataList = /*#__PURE__*/function (_React$Component2) {
@@ -34179,13 +34174,12 @@ var DataList = /*#__PURE__*/function (_React$Component2) {
           dataGets: dataGets
         });
       });
-      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "ETH"), /*#__PURE__*/React.createElement("th", null, "DOGE"), /*#__PURE__*/React.createElement("th", null, "NEO"), /*#__PURE__*/React.createElement("th", null, "LINK"), /*#__PURE__*/React.createElement("th", null, "EOS")), dataGetses));
+      return /*#__PURE__*/React.createElement("table", null, /*#__PURE__*/React.createElement("tbody", null, /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("th", null, "$ETH"), /*#__PURE__*/React.createElement("th", null, "%ETH"), /*#__PURE__*/React.createElement("th", null, "$DOGE"), /*#__PURE__*/React.createElement("th", null, "%DOGE"), /*#__PURE__*/React.createElement("th", null, "$NEO"), /*#__PURE__*/React.createElement("th", null, "%NEO"), /*#__PURE__*/React.createElement("th", null, "$LINK"), /*#__PURE__*/React.createElement("th", null, "%LINK"), /*#__PURE__*/React.createElement("th", null, "$EOS"), /*#__PURE__*/React.createElement("th", null, "%EOS")), dataGetses));
     }
   }]);
 
   return DataList;
-}(React.Component); // end::employee-list[]
-// tag::employee[]
+}(React.Component); //getting data for the list
 
 
 var DataGets = /*#__PURE__*/function (_React$Component3) {
@@ -34202,16 +34196,15 @@ var DataGets = /*#__PURE__*/function (_React$Component3) {
   _createClass(DataGets, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.dataGets.ethPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.dogePrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.neoPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.linkPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.eosPrice));
+      return /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, this.props.dataGets.ethPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.ethPercentage), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.dogePrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.dogePercentage), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.neoPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.neoPercentage), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.linkPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.linkPercentage), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.eosPrice), /*#__PURE__*/React.createElement("td", null, this.props.dataGets.eosPercentage));
     }
   }]);
 
   return DataGets;
-}(React.Component); // end::employee[]
-// tag::render[]
+}(React.Component); //rendering the frontend
 
 
-ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('react')); // end::render[]
+ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('react'));
 
 /***/ }),
 
