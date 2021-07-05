@@ -1,0 +1,3 @@
+#ignoring the twitter keys files
+twitterKeys.txt
+**/BearerToken.java

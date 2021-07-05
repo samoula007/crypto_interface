@@ -1,5 +1,2 @@
-com\trendo\backend\DataGets.class
 com\trendo\backend\ReactAndSpringDataRestApplication.class
-com\trendo\backend\DataRepository.class
-com\trendo\backend\DatabaseLoader.class
 com\trendo\backend\HomeController.class

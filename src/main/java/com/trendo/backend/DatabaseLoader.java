@@ -21,7 +21,6 @@ public class DatabaseLoader implements CommandLineRunner {
 	// overriding run to save repo
 	@Override
 	public void run(String... strings) throws Exception {
-		this.repository.save(new DataGets(DataGets.uuidEth, DataGets.uuidDOGE, DataGets.uuidNEO, DataGets.uuidLINK,
-				DataGets.uuidEOS));
+		this.repository.save(new DataGets());
 	}
 }

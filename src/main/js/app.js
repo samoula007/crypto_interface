@@ -41,12 +41,22 @@ class DataList extends React.Component {
 						<th>%ETH</th>
 						<th>$DOGE</th>
 						<th>%DOGE</th>
-						<th>$NEO</th>
-						<th>%NEO</th>
+						<th>$BNB</th>
+						<th>%BNB</th>
 						<th>$LINK</th>
 						<th>%LINK</th>
 						<th>$EOS</th>
 						<th>%EOS</th>
+						<th>Tweets ETH</th>
+						<th>%Tweets ETH</th>
+						<th>Tweets DOGE</th>
+						<th>%Tweets DOGE</th>
+						<th>Tweets BNB</th>
+						<th>%Tweets BNB</th>
+						<th>Tweets LINK</th>
+						<th>%Tweets LINK</th>
+						<th>Tweets EOS</th>
+						<th>%Tweets EOS</th>
 					</tr>
 					{dataGetses}
 				</tbody>
@@ -60,17 +70,29 @@ class DataGets extends React.Component {
 	render() {
 		return (
 			<tr>
+				{/* currencies */}
 				<td>{this.props.dataGets.ethPrice}</td>
 				<td>{this.props.dataGets.ethPercentage}</td>
 				<td>{this.props.dataGets.dogePrice}</td>
 				<td>{this.props.dataGets.dogePercentage}</td>
-				<td>{this.props.dataGets.neoPrice}</td>
-				<td>{this.props.dataGets.neoPercentage}</td>
+				<td>{this.props.dataGets.bnbPrice}</td>
+				<td>{this.props.dataGets.bnbPercentage}</td>
 				<td>{this.props.dataGets.linkPrice}</td>
 				<td>{this.props.dataGets.linkPercentage}</td>
 				<td>{this.props.dataGets.eosPrice}</td>
 				<td>{this.props.dataGets.eosPercentage}</td>
-			</tr>
+				{/*twitter */}
+				<td>{this.props.dataGets.ethTweets}</td>
+				<td>{this.props.dataGets.ethTweetsPercentage}</td>
+				<td>{this.props.dataGets.dogeTweets}</td>
+				<td>{this.props.dataGets.dogeTweetsPercentage}</td>
+				<td>{this.props.dataGets.bnbTweets}</td>
+				<td>{this.props.dataGets.bnbTweetsPercentage}</td>
+				<td>{this.props.dataGets.linkTweets}</td>
+				<td>{this.props.dataGets.linkTweetsPercentage}</td>
+				<td>{this.props.dataGets.eosTweets}</td>
+				<td>{this.props.dataGets.eosTweetsPercentage}</td>
+			</tr >
 		)
 	}
 }
