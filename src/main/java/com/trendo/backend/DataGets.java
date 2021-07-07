@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class DataGets {
 	// entity id
 	private @Id @GeneratedValue Long id;
-	// declaring private variables
+	// variables for currencies
 	private String ethPrice;
 	private String dogePrice;
 	private String bnbPrice;
@@ -24,8 +24,7 @@ public class DataGets {
 	private String bnbPercentage;
 	private String linkPercentage;
 	private String eosPercentage;
-
-	// for twitter
+	// variables for twitter
 	private String ethTweets;
 	private String dogeTweets;
 	private String bnbTweets;
@@ -36,6 +35,12 @@ public class DataGets {
 	private String bnbTweetsPercentage;
 	private String linkTweetsPercentage;
 	private String eosTweetsPercentage;
+	// variables for ratio
+	private String ethRatio;
+	private String dogeRatio;
+	private String bnbRatio;
+	private String linkRatio;
+	private String eosRatio;
 
 	// calling prices
 	public DataGets() throws Exception {
@@ -51,16 +56,25 @@ public class DataGets {
 		this.linkPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidLINK);
 		this.eosPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidEOS);
 		// twitter api
-		this.ethTweets = TweetCount.getTweetCountStringYesterday(DataBase.eth);
-		this.dogeTweets = TweetCount.getTweetCountStringYesterday(DataBase.doge);
-		this.bnbTweets = TweetCount.getTweetCountStringYesterday(DataBase.bnb);
-		this.linkTweets = TweetCount.getTweetCountStringYesterday(DataBase.link);
-		this.eosTweets = TweetCount.getTweetCountStringYesterday(DataBase.eos);
+		this.ethTweets = TweetCount.getTweetCountString(DataBase.eth, DataBase.yesterday);
+		this.dogeTweets = TweetCount.getTweetCountString(DataBase.doge, DataBase.yesterday);
+		this.bnbTweets = TweetCount.getTweetCountString(DataBase.bnb, DataBase.yesterday);
+		this.linkTweets = TweetCount.getTweetCountString(DataBase.link, DataBase.yesterday);
+		this.eosTweets = TweetCount.getTweetCountString(DataBase.eos, DataBase.yesterday);
 		this.ethTweetsPercentage = TweetCount.getTweetsPercentChange(DataBase.eth);
 		this.dogeTweetsPercentage = TweetCount.getTweetsPercentChange(DataBase.doge);
 		this.bnbTweetsPercentage = TweetCount.getTweetsPercentChange(DataBase.bnb);
 		this.linkTweetsPercentage = TweetCount.getTweetsPercentChange(DataBase.link);
 		this.eosTweetsPercentage = TweetCount.getTweetsPercentChange(DataBase.eos);
+		// currencies/tweets ratio
+		this.ethRatio = RatioCalculator.getRatio(DataBase.uuidETH, DataBase.eth);
+		this.dogeRatio = RatioCalculator.getRatio(DataBase.uuidDOGE, DataBase.doge);
+		this.bnbRatio = RatioCalculator.getRatio(DataBase.uuidBNB, DataBase.bnb);
+		this.linkRatio = RatioCalculator.getRatio(DataBase.uuidLINK, DataBase.link);
+		this.eosRatio = RatioCalculator.getRatio(DataBase.uuidEOS, DataBase.eos);
+		// in the ratio class, add the weird functions i wrote in my notebook
+		// write the logged data in a text file
+		// display the data as graphs on the frontend
 	}
 
 	// Getters for currencies
@@ -148,6 +162,28 @@ public class DataGets {
 
 	public String getEosTweetsPercentage() {
 		return eosTweetsPercentage;
+	}
+
+	// Getters for ratios
+
+	public String getEthRatio() {
+		return ethRatio;
+	}
+
+	public String getDogeRatio() {
+		return dogeRatio;
+	}
+
+	public String getBnbRatio() {
+		return bnbRatio;
+	}
+
+	public String getLinkRatio() {
+		return linkRatio;
+	}
+
+	public String getEosRatio() {
+		return eosRatio;
 	}
 
 }

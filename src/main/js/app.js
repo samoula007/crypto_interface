@@ -57,6 +57,11 @@ class DataList extends React.Component {
 						<th>%Tweets LINK</th>
 						<th>Tweets EOS</th>
 						<th>%Tweets EOS</th>
+						<th>ETH $/T ratio</th>
+						<th>DOGE $/T ratio</th>
+						<th>BNB $/T ratio</th>
+						<th>LINK $/T ratio</th>
+						<th>EOS $/T ratio</th>
 					</tr>
 					{dataGetses}
 				</tbody>
@@ -92,6 +97,12 @@ class DataGets extends React.Component {
 				<td>{this.props.dataGets.linkTweetsPercentage}</td>
 				<td>{this.props.dataGets.eosTweets}</td>
 				<td>{this.props.dataGets.eosTweetsPercentage}</td>
+				{/*ratios */}
+				<td>{this.props.dataGets.ethRatio}</td>
+				<td>{this.props.dataGets.dogeRatio}</td>
+				<td>{this.props.dataGets.bnbRatio}</td>
+				<td>{this.props.dataGets.linkRatio}</td>
+				<td>{this.props.dataGets.eosRatio}</td>
 			</tr >
 		)
 	}

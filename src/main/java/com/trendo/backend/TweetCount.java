@@ -52,60 +52,40 @@ public class TweetCount {
 
     }
 
-    // takes the number of yesterday's tweets from getWeekObject
-    public static String getTweetCountStringYesterday(String currency) throws IOException, URISyntaxException {
+    public static String getTweetCountString(String currency, int day) throws IOException, URISyntaxException {
         String bearerToken = BearerToken.token; // you will need your own twitter bearer token
         String response = getWeekObject(currency, bearerToken);
         JSONObject jsnobject = new JSONObject(response);
-        String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(6).optString("tweet_count");
+        String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(day).optString("tweet_count");
 
         return yesterdayTweets;
     }
 
-    // takes the number of two days ago tweets from getWeekObject
-    public static String getTweetCountStringTwoDaysAgo(String currency) throws IOException, URISyntaxException {
-        String bearerToken = BearerToken.token; // you will need your own twitter bearer token
-        String response = getWeekObject(currency, bearerToken);
-        JSONObject jsnobject = new JSONObject(response);
-        String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(5).optString("tweet_count");
+    public static double getTweetCountDouble(String currency, int day) throws IOException, URISyntaxException {
+        String number = getTweetCountString(currency, day);
+        double asDouble = Double.parseDouble(number);
 
-        return yesterdayTweets;
-    }
-
-    // converts the number of tweets from yesterday to an integer
-    public static int getTweetCountIntYesterday(String currency) throws IOException, URISyntaxException {
-        String number = getTweetCountStringYesterday(currency);
-        int asInt = Integer.parseInt(number);
-
-        return asInt;
-    }
-
-    // converts the number of tweets from two days ago to an integer
-    public static int getTweetCountIntTwoDaysAgo(String currency) throws IOException, URISyntaxException {
-        String number = getTweetCountStringTwoDaysAgo(currency);
-        int asInt = Integer.parseInt(number);
-
-        return asInt;
+        return asDouble;
     }
 
     // gets the percent of variation of the number of tweets
     // between two days ago and yesterday
     public static String getTweetsPercentChange(String currency) throws IOException, URISyntaxException {
-        int twoDaysAgo = getTweetCountIntTwoDaysAgo(currency);
-        int yesterday = getTweetCountIntYesterday(currency);
+        double TweetsTwoDaysAgo = getTweetCountDouble(currency, DataBase.twoDaysAgo);
+        double TweetsYesterday = getTweetCountDouble(currency, DataBase.yesterday);
 
-        if (twoDaysAgo < yesterday) { // increase
-            double subtraction = yesterday - twoDaysAgo;
-            double percent = subtraction * 100 / twoDaysAgo;
+        if (TweetsTwoDaysAgo < TweetsYesterday) { // increase
+            double subtraction = TweetsYesterday - TweetsTwoDaysAgo;
+            double percent = subtraction * 100 / TweetsTwoDaysAgo;
             double rounded = Math.round(percent * 100.0) / 100.0;
-            String roundedPercentChange = "+" + String.valueOf(rounded);
+            String roundedPercentChange = String.valueOf(rounded);
             return roundedPercentChange;
-        } else if (twoDaysAgo == yesterday) { // no change
+        } else if (TweetsTwoDaysAgo == TweetsYesterday) { // no change
             String percentChange = "0.00";
             return percentChange;
         } else { // decrease
-            double subtraction = twoDaysAgo - yesterday;
-            double percent = subtraction * 100 / twoDaysAgo;
+            double subtraction = TweetsTwoDaysAgo - TweetsYesterday;
+            double percent = subtraction * 100 / TweetsTwoDaysAgo;
             double rounded = Math.round(percent * 100.0) / 100.0;
             String roundedPercentChange = "-" + String.valueOf(rounded);
             return roundedPercentChange;
@@ -113,4 +93,11 @@ public class TweetCount {
         }
 
     }
+
+    public static double getTweetsPercentChangeAsDouble(String currency) throws IOException, URISyntaxException {
+        String percentage = getTweetsPercentChange(currency);
+        double conversion = Double.parseDouble(percentage);
+        return conversion;
+    }
+
 }
