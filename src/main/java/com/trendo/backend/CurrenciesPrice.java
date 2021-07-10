@@ -26,6 +26,7 @@ public class CurrenciesPrice {
         // Daily price change as string
         String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
                 .getJSONObject("pricePercentChange").optString("change24h");
+        WriteToData.jumpLine("getDailyPricePercentChange " + dailyPercentage, WriteToData.getCurrencyByIdentifier(id));
         return dailyPercentage;
 
     }
@@ -42,6 +43,7 @@ public class CurrenciesPrice {
     public static String getPrice(String identifier) throws Exception {
         double price = getPriceAsDouble(identifier);
         String roundedPrice = String.valueOf(price);
+        WriteToData.jumpLine("getPrice " + roundedPrice, WriteToData.getCurrencyByIdentifier(identifier));
         return roundedPrice;
 
     }

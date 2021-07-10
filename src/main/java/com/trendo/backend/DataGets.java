@@ -41,6 +41,12 @@ public class DataGets {
 	private String bnbRatio;
 	private String linkRatio;
 	private String eosRatio;
+	// variables for sentiment
+	private String ethSentiment;
+	private String dogeSentiment;
+	private String bnbSentiment;
+	private String linkSentiment;
+	private String eosSentiment;
 
 	// calling prices
 	public DataGets() throws Exception {
@@ -72,9 +78,17 @@ public class DataGets {
 		this.bnbRatio = RatioCalculator.getRatio(DataBase.uuidBNB, DataBase.bnb);
 		this.linkRatio = RatioCalculator.getRatio(DataBase.uuidLINK, DataBase.link);
 		this.eosRatio = RatioCalculator.getRatio(DataBase.uuidEOS, DataBase.eos);
-		// in the ratio class, add the weird functions i wrote in my notebook
-		// write the logged data in a text file
-		// display the data as graphs on the frontend
+		// sentiment
+		// a good idea would be that the ratio is set on the yesterday price action
+		// in order to predict the price of today. basically, the sentiment
+		// predicts the next day. Currently using today price + yesterday tweets
+		this.ethSentiment = RatioCalculator.getSentiment(DataBase.uuidETH, DataBase.eth);
+		this.dogeSentiment = RatioCalculator.getSentiment(DataBase.uuidDOGE, DataBase.doge);
+		this.bnbSentiment = RatioCalculator.getSentiment(DataBase.uuidBNB, DataBase.bnb);
+		this.linkSentiment = RatioCalculator.getSentiment(DataBase.uuidLINK, DataBase.link);
+		this.eosSentiment = RatioCalculator.getSentiment(DataBase.uuidEOS, DataBase.eos);
+
+		// --> Display the data as graphs in frontend
 	}
 
 	// Getters for currencies
@@ -184,6 +198,27 @@ public class DataGets {
 
 	public String getEosRatio() {
 		return eosRatio;
+	}
+
+	// Getters for sentiment
+	public String getEthSentiment() {
+		return ethSentiment;
+	}
+
+	public String getDogeSentiment() {
+		return dogeSentiment;
+	}
+
+	public String getBnbSentiment() {
+		return bnbSentiment;
+	}
+
+	public String getLinkSentiment() {
+		return linkSentiment;
+	}
+
+	public String getEosSentiment() {
+		return eosSentiment;
 	}
 
 }

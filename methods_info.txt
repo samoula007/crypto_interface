@@ -1,0 +1,19 @@
+                                    RATIOCALCULATOR.getSentiment
+
+Sentiment=positive (%$ -, %Tweets +) : 
+                    People feel like its a dip, encourage others to buy.
+Sentiment=negative (%$ -, %Tweets -) : 
+                    People talk less about ir because they feel depressed, sellout continues.
+Sentiment=darkskin (%$ +, %Tweets +) : 
+                    Theory ~ Probably bullrun, snowball effect possible
+Sentiment=lightskin (%$ +, %Tweets -) : 
+                    Theory ~ On the verge of a reverse, probably            
+
+
+                                    RATIOCALCULATOR.getRatio
+
+--> A ratio close to "1" means the price and tweets movements are heavily correlated
+--> A LOWER (ratio << 1) means that the TWITTER movement is really volatile in regards to the PRICE change,
+    (...to be defined)
+--> A HIGHER (ratio >> 1) means that theres a lot of bots/noise promoting the currency, PRICE is not really
+    related to the TWITTER sentiment, inelastic
