@@ -57,7 +57,10 @@ public class TweetCount {
         String response = getWeekObject(currency, bearerToken);
         JSONObject jsnobject = new JSONObject(response);
         String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(day).optString("tweet_count");
-
+        if (currency.equals(DataBase.link)) {
+            currency = "LINK";
+        }
+        WriteToData.jumpLine("getTweetCount " + yesterdayTweets, currency.trim());
         return yesterdayTweets;
     }
 
@@ -79,15 +82,27 @@ public class TweetCount {
             double percent = subtraction * 100 / TweetsTwoDaysAgo;
             double rounded = Math.round(percent * 100.0) / 100.0;
             String roundedPercentChange = String.valueOf(rounded);
+            if (currency.equals(DataBase.link)) {
+                currency = "LINK";
+            }
+            WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
             return roundedPercentChange;
         } else if (TweetsTwoDaysAgo == TweetsYesterday) { // no change
             String percentChange = "0.00";
+            if (currency.equals(DataBase.link)) {
+                currency = "LINK";
+            }
+            WriteToData.jumpLine("getTweetsPercentChange " + percentChange, currency.trim());
             return percentChange;
         } else { // decrease
             double subtraction = TweetsTwoDaysAgo - TweetsYesterday;
             double percent = subtraction * 100 / TweetsTwoDaysAgo;
             double rounded = Math.round(percent * 100.0) / 100.0;
             String roundedPercentChange = "-" + String.valueOf(rounded);
+            if (currency.equals(DataBase.link)) {
+                currency = "LINK";
+            }
+            WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
             return roundedPercentChange;
 
         }
