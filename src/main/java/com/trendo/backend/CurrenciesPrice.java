@@ -48,7 +48,7 @@ public class CurrenciesPrice {
 
     }
 
-    // Getting currency price from response as an integer
+    // Getting currency price from response as a double
     public static double getPriceAsDouble(String identifier) throws Exception {
         // creating response
         HttpResponse<JsonNode> response = createResponse(identifier);

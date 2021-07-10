@@ -52,6 +52,8 @@ public class TweetCount {
 
     }
 
+    // gets the number of tweets on a currency from x days ago,
+    // day=7 returns today && day=1 returns 7 days ago
     public static String getTweetCountString(String currency, int day) throws IOException, URISyntaxException {
         String bearerToken = BearerToken.token; // you will need your own twitter bearer token
         String response = getWeekObject(currency, bearerToken);
@@ -64,6 +66,8 @@ public class TweetCount {
         return yesterdayTweets;
     }
 
+    // gets the number of tweets on a currency from x days ago,
+    // day=7 returns today && day=1 returns 7 days ago, as a double
     public static double getTweetCountDouble(String currency, int day) throws IOException, URISyntaxException {
         String number = getTweetCountString(currency, day);
         double asDouble = Double.parseDouble(number);
@@ -109,6 +113,8 @@ public class TweetCount {
 
     }
 
+    // gets the percent of variation of the number of tweets
+    // between two days ago and yesterday, as a double
     public static double getTweetsPercentChangeAsDouble(String currency) throws IOException, URISyntaxException {
         String percentage = getTweetsPercentChange(currency);
         double conversion = Double.parseDouble(percentage);

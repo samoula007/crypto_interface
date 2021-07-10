@@ -5,6 +5,7 @@ public class RatioCalculator {
     public void main(String[] args) {
     }
 
+    // returns the ratio of the %PriceChange over %TweetsChange
     public static String getRatio(String identifier, String currency) throws Exception {
         double pricePercentageNow = CurrenciesPrice.getDailyPercentageAsDouble(identifier);
         double tweetsPercentageYesterday = TweetCount.getTweetsPercentChangeAsDouble(currency);
@@ -18,6 +19,7 @@ public class RatioCalculator {
         return stringedRatio;
     }
 
+    // returns the (experimental) sentiment about a currency
     public static String getSentiment(String identifier, String currency) throws Exception {
         double pricePercentageNow = CurrenciesPrice.getDailyPercentageAsDouble(identifier);
         double tweetsPercentageYesterday = TweetCount.getTweetsPercentChangeAsDouble(currency);

@@ -4,17 +4,14 @@ import java.io.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-//Je dois append les datas au file, pas overwrite
-//je dois logger le temps et l'heure a coter du logged data
-//je dois logger le nom de la data
-//je jumpline a chaque entree de data
-//quand je dois creer une autre methode qui va lire du data file et regrouper les donnes pour le graph
+//Data writer and some utilities
 public class WriteToData {
 
     public void main(String[] args) {
 
     }
 
+    // Appends data on same line
     public static void writer(String input, String path) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.filepath + path, true));
@@ -25,6 +22,7 @@ public class WriteToData {
         }
     }
 
+    // Appends data on newline
     public static void jumpLine(String input, String path) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(DataBase.filepath + path.trim(), true));
@@ -35,6 +33,7 @@ public class WriteToData {
         }
     }
 
+    // Returns the date and time
     private static String getDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -42,6 +41,7 @@ public class WriteToData {
 
     }
 
+    // Returns currency tag from identifier
     public static String getCurrencyByIdentifier(String identifier) {
         if (identifier.equals(DataBase.uuidETH)) {
             return "ETH";
