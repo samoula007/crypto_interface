@@ -86,6 +86,7 @@ public class TweetCount {
             double percent = subtraction * 100 / TweetsTwoDaysAgo;
             double rounded = Math.round(percent * 100.0) / 100.0;
             String roundedPercentChange = String.valueOf(rounded);
+            // remove if statements
             if (currency.equals(DataBase.link)) {
                 currency = "LINK";
             }

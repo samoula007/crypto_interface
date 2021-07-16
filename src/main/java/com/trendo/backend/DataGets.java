@@ -47,6 +47,51 @@ public class DataGets {
 	private String bnbSentiment;
 	private String linkSentiment;
 	private String eosSentiment;
+	// variables for ff supply
+	private String ethFFSupply;
+	private String dogeFFSupply;
+	private String bnbFFSupply;
+	private String linkFFSupply;
+	private String eosFFSupply;
+	// variables for total supply
+	private String ethTotalSupply;
+	private String dogeTotalSupply;
+	private String bnbTotalSupply;
+	private String linkTotalSupply;
+	private String eosTotalSupply;
+	// variables for market cap + %
+	private String ethMarketCap;
+	private String dogeMarketCap;
+	private String bnbMarketCap;
+	private String linkMarketCap;
+	private String eosMarketCap;
+	private String ethMarketCapPercentage;
+	private String dogeMarketCapPercentage;
+	private String bnbMarketCapPercentage;
+	private String linkMarketCapPercentage;
+	private String eosMarketCapPercentage;
+	// variables for total market cap + %
+	private String ethTotalMarketCap;
+	private String dogeTotalMarketCap;
+	private String bnbTotalMarketCap;
+	private String linkTotalMarketCap;
+	private String eosTotalMarketCap;
+	private String ethTotalMarketCapPercentage;
+	private String dogeTotalMarketCapPercentage;
+	private String bnbTotalMarketCapPercentage;
+	private String linkTotalMarketCapPercentage;
+	private String eosTotalMarketCapPercentage;
+	// variables for volume + %
+	private String ethVolume;
+	private String dogeVolume;
+	private String bnbVolume;
+	private String linkVolume;
+	private String eosVolume;
+	private String ethVolumePercentage;
+	private String dogeVolumePercentage;
+	private String bnbVolumePercentage;
+	private String linkVolumePercentage;
+	private String eosVolumePercentage;
 
 	// calling prices
 	public DataGets() throws Exception {
@@ -87,8 +132,78 @@ public class DataGets {
 		this.bnbSentiment = RatioCalculator.getSentiment(DataBase.uuidBNB, DataBase.bnb);
 		this.linkSentiment = RatioCalculator.getSentiment(DataBase.uuidLINK, DataBase.link);
 		this.eosSentiment = RatioCalculator.getSentiment(DataBase.uuidEOS, DataBase.eos);
+		// ffsupply
+		this.ethFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidETH);
+		this.dogeFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidDOGE);
+		this.bnbFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidBNB);
+		this.linkFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidLINK);
+		this.eosFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidEOS);
+		// total supply
+		this.ethTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidETH);
+		this.dogeTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidDOGE);
+		this.bnbTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidBNB);
+		this.linkTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidLINK);
+		this.eosTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidEOS);
+		// market cap + %
+		this.ethMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidETH);
+		this.dogeMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidDOGE);
+		this.bnbMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidBNB);
+		this.linkMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidLINK);
+		this.eosMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidEOS);
+		this.ethMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidETH);
+		this.dogeMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidDOGE);
+		this.bnbMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidBNB);
+		this.linkMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidLINK);
+		this.eosMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidEOS);
+		// total market cap + %
+		this.ethTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidETH);
+		this.dogeTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidDOGE);
+		this.bnbTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidBNB);
+		this.linkTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidLINK);
+		this.eosTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidEOS);
+		this.ethTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidETH);
+		this.dogeTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidDOGE);
+		this.bnbTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidBNB);
+		this.linkTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidLINK);
+		this.eosTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidEOS);
+		// volume + %
+		this.ethVolume = CurrenciesPrice.getVolume(DataBase.uuidETH);
+		this.dogeVolume = CurrenciesPrice.getVolume(DataBase.uuidDOGE);
+		this.bnbVolume = CurrenciesPrice.getVolume(DataBase.uuidBNB);
+		this.linkVolume = CurrenciesPrice.getVolume(DataBase.uuidLINK);
+		this.eosVolume = CurrenciesPrice.getVolume(DataBase.uuidEOS);
+		this.ethVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidETH);
+		this.dogeVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidDOGE);
+		this.bnbVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidBNB);
+		this.linkVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidLINK);
+		this.eosVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidEOS);
 
-		// --> Display the data as graphs in frontend
+		// ********************PART ONE, until August 1**************************
+		// >displaying insingthful data as 2 charts and a table<
+		// --> a bar chart avec price+tweets per currency
+		// --> another one with %price+%tweets per currency
+		// --> a table containing sentiment, ratios, and other infos about currencies
+
+		// can simplify currenciesPrice asf by creating 3 template functions, and
+		// calling them with the names of the wanted data (CurrenciesPrice, change name)
+
+		// en fait, pour avoir le prix de hier, je prends le prix d'ajd en fonction du
+		// %change,, mais marche pas pour %
+
+		// ********************PART TWO, until october 1**************************
+		// >creating a financial model and a set of rule<
+		// --> deploy on the cloud and Log the data in a db, maybe mongoDb
+		// --> create a basic financial model and feed it to a python project
+		// --> use an ai model to analyse data using a python library
+		// --> scrape the data i have stored in db to put it in ai model
+		// --> to train the ai model, use historical data (5y) of btc
+		// --> need to perform well in order to go to the next step
+
+		// ********************PART THREE, by january 1**************************
+		// >Automating trading with a trading bot<
+		// --> using the ai model, create a trading bot
+		// --> feed the bot real time data from the deployed api on the cloud
+		// --> make the bot trade setups, send alerts if cant trade
 	}
 
 	// Getters for currencies
@@ -219,6 +334,171 @@ public class DataGets {
 
 	public String getEosSentiment() {
 		return eosSentiment;
+	}
+
+	// Getters for FF supply
+	public String getEthFFSupply() {
+		return ethFFSupply;
+	}
+
+	public String getDogeFFSupply() {
+		return dogeFFSupply;
+	}
+
+	public String getBnbFFSupply() {
+		return bnbFFSupply;
+	}
+
+	public String getLinkFFSupply() {
+		return linkFFSupply;
+	}
+
+	public String getEosFFSupply() {
+		return eosFFSupply;
+	}
+
+	// Getters for total supply
+	public String getEthTotalSupply() {
+		return ethTotalSupply;
+	}
+
+	public String getDogeTotalSupply() {
+		return dogeTotalSupply;
+	}
+
+	public String getBnbTotalSupply() {
+		return bnbTotalSupply;
+	}
+
+	public String getLinkTotalSupply() {
+		return linkTotalSupply;
+	}
+
+	public String getEosTotalSupply() {
+		return eosTotalSupply;
+	}
+
+	// Getters for market cap + %
+	public String getEthMarketCap() {
+		return ethMarketCap;
+	}
+
+	public String getDogeMarketCap() {
+		return dogeMarketCap;
+	}
+
+	public String getBnbMarketCap() {
+		return bnbMarketCap;
+	}
+
+	public String getLinkMarketCap() {
+		return linkMarketCap;
+	}
+
+	public String getEosMarketCap() {
+		return eosMarketCap;
+	}
+
+	public String getEthMarketCapPercentage() {
+		return ethMarketCapPercentage;
+	}
+
+	public String getDogeMarketCapPercentage() {
+		return dogeMarketCapPercentage;
+	}
+
+	public String getBnbMarketCapPercentage() {
+		return bnbMarketCapPercentage;
+	}
+
+	public String getLinkMarketCapPercentage() {
+		return linkMarketCapPercentage;
+	}
+
+	public String getEosMarketCapPercentage() {
+		return eosMarketCapPercentage;
+	}
+
+	// Getters for total market cap + %
+	public String getEthTotalMarketCap() {
+		return ethTotalMarketCap;
+	}
+
+	public String getDogeTotalMarketCap() {
+		return dogeTotalMarketCap;
+	}
+
+	public String getBnbTotalMarketCap() {
+		return bnbTotalMarketCap;
+	}
+
+	public String getLinkTotalMarketCap() {
+		return linkTotalMarketCap;
+	}
+
+	public String getEosTotalMarketCap() {
+		return eosTotalMarketCap;
+	}
+
+	public String getEthTotalMarketCapPercentage() {
+		return ethTotalMarketCapPercentage;
+	}
+
+	public String getDogeTotalMarketCapPercentage() {
+		return dogeTotalMarketCapPercentage;
+	}
+
+	public String getBnbTotalMarketCapPercentage() {
+		return bnbTotalMarketCapPercentage;
+	}
+
+	public String getLinkTotalMarketCapPercentage() {
+		return linkTotalMarketCapPercentage;
+	}
+
+	public String getEosTotalMarketCapPercentage() {
+		return eosTotalMarketCapPercentage;
+	}
+
+	// Getters for volume + %
+	public String getEthVolume() {
+		return ethVolume;
+	}
+
+	public String getDogeVolume() {
+		return dogeVolume;
+	}
+
+	public String getBnbVolume() {
+		return bnbVolume;
+	}
+
+	public String getLinkVolume() {
+		return linkVolume;
+	}
+
+	public String getEosVolume() {
+		return eosVolume;
+	}
+
+	public String getEthVolumePercentage() {
+		return ethVolumePercentage;
+	}
+
+	public String getDogeVolumePercentage() {
+		return dogeVolumePercentage;
+	}
+
+	public String getBnbVolumePercentage() {
+		return bnbVolumePercentage;
+	}
+
+	public String getLinkVolumePercentage() {
+		return linkVolumePercentage;
+	}
+
+	public String getEosVolumePercentage() {
+		return eosVolumePercentage;
 	}
 
 }
