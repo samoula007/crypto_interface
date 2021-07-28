@@ -7,9 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.trendo.backend.methods.CurrencyInfo;
+import com.trendo.backend.methods.DataBase;
+import com.trendo.backend.methods.RatioCalculator;
+import com.trendo.backend.methods.TweetCount;
+
 //spring entity
 @Entity
-// class getting any necessary data
+// class getting any necessary data for api
 public class DataGets {
 	// entity id
 	private @Id @GeneratedValue Long id;
@@ -96,16 +101,16 @@ public class DataGets {
 	// calling prices
 	public DataGets() throws Exception {
 		// currencies
-		this.ethPrice = CurrenciesPrice.getPrice(DataBase.uuidETH);
-		this.dogePrice = CurrenciesPrice.getPrice(DataBase.uuidDOGE);
-		this.bnbPrice = CurrenciesPrice.getPrice(DataBase.uuidBNB);
-		this.linkPrice = CurrenciesPrice.getPrice(DataBase.uuidLINK);
-		this.eosPrice = CurrenciesPrice.getPrice(DataBase.uuidEOS);
-		this.ethPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidETH);
-		this.dogePercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidDOGE);
-		this.bnbPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidBNB);
-		this.linkPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidLINK);
-		this.eosPercentage = CurrenciesPrice.getDailyPercentage(DataBase.uuidEOS);
+		this.ethPrice = CurrencyInfo.getPrice(DataBase.uuidETH);
+		this.dogePrice = CurrencyInfo.getPrice(DataBase.uuidDOGE);
+		this.bnbPrice = CurrencyInfo.getPrice(DataBase.uuidBNB);
+		this.linkPrice = CurrencyInfo.getPrice(DataBase.uuidLINK);
+		this.eosPrice = CurrencyInfo.getPrice(DataBase.uuidEOS);
+		this.ethPercentage = CurrencyInfo.getDailyPercentage(DataBase.uuidETH);
+		this.dogePercentage = CurrencyInfo.getDailyPercentage(DataBase.uuidDOGE);
+		this.bnbPercentage = CurrencyInfo.getDailyPercentage(DataBase.uuidBNB);
+		this.linkPercentage = CurrencyInfo.getDailyPercentage(DataBase.uuidLINK);
+		this.eosPercentage = CurrencyInfo.getDailyPercentage(DataBase.uuidEOS);
 		// twitter api
 		this.ethTweets = TweetCount.getTweetCountString(DataBase.eth, DataBase.yesterday);
 		this.dogeTweets = TweetCount.getTweetCountString(DataBase.doge, DataBase.yesterday);
@@ -133,50 +138,50 @@ public class DataGets {
 		this.linkSentiment = RatioCalculator.getSentiment(DataBase.uuidLINK, DataBase.link);
 		this.eosSentiment = RatioCalculator.getSentiment(DataBase.uuidEOS, DataBase.eos);
 		// ffsupply
-		this.ethFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidETH);
-		this.dogeFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidDOGE);
-		this.bnbFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidBNB);
-		this.linkFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidLINK);
-		this.eosFFSupply = CurrenciesPrice.getFFSupply(DataBase.uuidEOS);
+		this.ethFFSupply = CurrencyInfo.getFFSupply(DataBase.uuidETH);
+		this.dogeFFSupply = CurrencyInfo.getFFSupply(DataBase.uuidDOGE);
+		this.bnbFFSupply = CurrencyInfo.getFFSupply(DataBase.uuidBNB);
+		this.linkFFSupply = CurrencyInfo.getFFSupply(DataBase.uuidLINK);
+		this.eosFFSupply = CurrencyInfo.getFFSupply(DataBase.uuidEOS);
 		// total supply
-		this.ethTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidETH);
-		this.dogeTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidDOGE);
-		this.bnbTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidBNB);
-		this.linkTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidLINK);
-		this.eosTotalSupply = CurrenciesPrice.getTotalSupply(DataBase.uuidEOS);
+		this.ethTotalSupply = CurrencyInfo.getTotalSupply(DataBase.uuidETH);
+		this.dogeTotalSupply = CurrencyInfo.getTotalSupply(DataBase.uuidDOGE);
+		this.bnbTotalSupply = CurrencyInfo.getTotalSupply(DataBase.uuidBNB);
+		this.linkTotalSupply = CurrencyInfo.getTotalSupply(DataBase.uuidLINK);
+		this.eosTotalSupply = CurrencyInfo.getTotalSupply(DataBase.uuidEOS);
 		// market cap + %
-		this.ethMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidETH);
-		this.dogeMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidDOGE);
-		this.bnbMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidBNB);
-		this.linkMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidLINK);
-		this.eosMarketCap = CurrenciesPrice.getMarketCap(DataBase.uuidEOS);
-		this.ethMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidETH);
-		this.dogeMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidDOGE);
-		this.bnbMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidBNB);
-		this.linkMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidLINK);
-		this.eosMarketCapPercentage = CurrenciesPrice.getMarketCapPercentage(DataBase.uuidEOS);
+		this.ethMarketCap = CurrencyInfo.getMarketCap(DataBase.uuidETH);
+		this.dogeMarketCap = CurrencyInfo.getMarketCap(DataBase.uuidDOGE);
+		this.bnbMarketCap = CurrencyInfo.getMarketCap(DataBase.uuidBNB);
+		this.linkMarketCap = CurrencyInfo.getMarketCap(DataBase.uuidLINK);
+		this.eosMarketCap = CurrencyInfo.getMarketCap(DataBase.uuidEOS);
+		this.ethMarketCapPercentage = CurrencyInfo.getMarketCapPercentage(DataBase.uuidETH);
+		this.dogeMarketCapPercentage = CurrencyInfo.getMarketCapPercentage(DataBase.uuidDOGE);
+		this.bnbMarketCapPercentage = CurrencyInfo.getMarketCapPercentage(DataBase.uuidBNB);
+		this.linkMarketCapPercentage = CurrencyInfo.getMarketCapPercentage(DataBase.uuidLINK);
+		this.eosMarketCapPercentage = CurrencyInfo.getMarketCapPercentage(DataBase.uuidEOS);
 		// total market cap + %
-		this.ethTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidETH);
-		this.dogeTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidDOGE);
-		this.bnbTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidBNB);
-		this.linkTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidLINK);
-		this.eosTotalMarketCap = CurrenciesPrice.getTotalMarketCap(DataBase.uuidEOS);
-		this.ethTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidETH);
-		this.dogeTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidDOGE);
-		this.bnbTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidBNB);
-		this.linkTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidLINK);
-		this.eosTotalMarketCapPercentage = CurrenciesPrice.getTotalMarketCapPercentage(DataBase.uuidEOS);
+		this.ethTotalMarketCap = CurrencyInfo.getTotalMarketCap(DataBase.uuidETH);
+		this.dogeTotalMarketCap = CurrencyInfo.getTotalMarketCap(DataBase.uuidDOGE);
+		this.bnbTotalMarketCap = CurrencyInfo.getTotalMarketCap(DataBase.uuidBNB);
+		this.linkTotalMarketCap = CurrencyInfo.getTotalMarketCap(DataBase.uuidLINK);
+		this.eosTotalMarketCap = CurrencyInfo.getTotalMarketCap(DataBase.uuidEOS);
+		this.ethTotalMarketCapPercentage = CurrencyInfo.getTotalMarketCapPercentage(DataBase.uuidETH);
+		this.dogeTotalMarketCapPercentage = CurrencyInfo.getTotalMarketCapPercentage(DataBase.uuidDOGE);
+		this.bnbTotalMarketCapPercentage = CurrencyInfo.getTotalMarketCapPercentage(DataBase.uuidBNB);
+		this.linkTotalMarketCapPercentage = CurrencyInfo.getTotalMarketCapPercentage(DataBase.uuidLINK);
+		this.eosTotalMarketCapPercentage = CurrencyInfo.getTotalMarketCapPercentage(DataBase.uuidEOS);
 		// volume + %
-		this.ethVolume = CurrenciesPrice.getVolume(DataBase.uuidETH);
-		this.dogeVolume = CurrenciesPrice.getVolume(DataBase.uuidDOGE);
-		this.bnbVolume = CurrenciesPrice.getVolume(DataBase.uuidBNB);
-		this.linkVolume = CurrenciesPrice.getVolume(DataBase.uuidLINK);
-		this.eosVolume = CurrenciesPrice.getVolume(DataBase.uuidEOS);
-		this.ethVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidETH);
-		this.dogeVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidDOGE);
-		this.bnbVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidBNB);
-		this.linkVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidLINK);
-		this.eosVolumePercentage = CurrenciesPrice.getVolumePercentage(DataBase.uuidEOS);
+		this.ethVolume = CurrencyInfo.getVolume(DataBase.uuidETH);
+		this.dogeVolume = CurrencyInfo.getVolume(DataBase.uuidDOGE);
+		this.bnbVolume = CurrencyInfo.getVolume(DataBase.uuidBNB);
+		this.linkVolume = CurrencyInfo.getVolume(DataBase.uuidLINK);
+		this.eosVolume = CurrencyInfo.getVolume(DataBase.uuidEOS);
+		this.ethVolumePercentage = CurrencyInfo.getVolumePercentage(DataBase.uuidETH);
+		this.dogeVolumePercentage = CurrencyInfo.getVolumePercentage(DataBase.uuidDOGE);
+		this.bnbVolumePercentage = CurrencyInfo.getVolumePercentage(DataBase.uuidBNB);
+		this.linkVolumePercentage = CurrencyInfo.getVolumePercentage(DataBase.uuidLINK);
+		this.eosVolumePercentage = CurrencyInfo.getVolumePercentage(DataBase.uuidEOS);
 
 	}
 

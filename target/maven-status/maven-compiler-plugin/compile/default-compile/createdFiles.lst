@@ -1,2 +1,10 @@
+com\trendo\backend\methods\RatioCalculator.class
+com\trendo\backend\DataGets.class
+com\trendo\backend\methods\DataBase.class
 com\trendo\backend\ReactAndSpringDataRestApplication.class
+com\trendo\backend\methods\TweetCount.class
 com\trendo\backend\HomeController.class
+com\trendo\backend\DataRepository.class
+com\trendo\backend\methods\CurrencyInfo.class
+com\trendo\backend\DatabaseLoader.class
+com\trendo\backend\methods\WriteToData.class
