@@ -16,4 +16,4 @@ module.exports = rest
     .wrap(mime, { registry: registry })
     .wrap(uriTemplateInterceptor)
     .wrap(errorCode)
-    .wrap(defaultRequest, { headers: { 'Accept': 'application/hal+json' } });
+    .wrap(defaultRequest, { headers: { 'Accept': '*' } });

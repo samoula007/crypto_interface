@@ -1,10 +1,9 @@
-/* simple table template for frontend */
-table {
-    border-collapse: collapse;
-}
+/* simple template for frontend */
+body {
+    background-color: black;
+    color: white;
+  }
 
-td, th {
-    border: 1px solid rgb(173, 75, 75);
-    padding: 0.5rem;
-    text-align: left;
-}
+  .App {
+    text-align: center;
+  }
