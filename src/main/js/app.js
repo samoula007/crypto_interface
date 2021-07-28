@@ -7,9 +7,6 @@ import regeneratorRuntime from 'regenerator-runtime';
 import PercentageGraph from './PercentageGraph';
 import FinalTable from './Table';
 
-//2) display the current data of wanted currencies along with the sentiment, as free text on the right side
-//3) display the ratio in what kind of chart?
-//4) once done, show someone (i.e. miguel and theo) for feedback on frontend
 
 
 async function App() {
