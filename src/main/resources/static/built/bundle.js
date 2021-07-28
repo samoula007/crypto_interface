@@ -1022,9 +1022,7 @@ var client = __webpack_require__(/*! ./client */ "./src/main/js/client.js"); //t
 
 
 
- //2) display the current data of wanted currencies along with the sentiment, as free text on the right side
-//3) display the ratio in what kind of chart?
-//4) once done, show someone (i.e. miguel and theo) for feedback on frontend
+
 
 function App() {
   return _App.apply(this, arguments);
