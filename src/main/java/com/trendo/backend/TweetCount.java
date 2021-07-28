@@ -25,101 +25,144 @@ public class TweetCount {
 
     // gets the prices of the week as a string
     private static String getWeekObject(String searchString, String bearerToken)
-            throws IOException, URISyntaxException {
-        String searchResponse = null;
+            throws IOException, URISyntaxException, Exception {
+        try {
+            String searchResponse = null;
 
-        HttpClient httpClient = HttpClients.custom()
-                .setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build()).build();
+            HttpClient httpClient = HttpClients.custom()
+                    .setDefaultRequestConfig(RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD).build())
+                    .build();
 
-        URIBuilder uriBuilder = new URIBuilder("https://api.twitter.com/2/tweets/counts/recent");
-        ArrayList<NameValuePair> queryParameters;
-        queryParameters = new ArrayList<>();
-        queryParameters.add(new BasicNameValuePair("query", searchString));
-        queryParameters.add(new BasicNameValuePair("granularity", "day"));
-        uriBuilder.addParameters(queryParameters);
+            URIBuilder uriBuilder = new URIBuilder("https://api.twitter.com/2/tweets/counts/recent");
+            ArrayList<NameValuePair> queryParameters;
+            queryParameters = new ArrayList<>();
+            queryParameters.add(new BasicNameValuePair("query", searchString));
+            queryParameters.add(new BasicNameValuePair("granularity", "day"));
+            uriBuilder.addParameters(queryParameters);
 
-        HttpGet httpGet = new HttpGet(uriBuilder.build());
-        httpGet.setHeader("Authorization", String.format("Bearer %s", bearerToken));
-        httpGet.setHeader("Content-Type", "application/json");
+            HttpGet httpGet = new HttpGet(uriBuilder.build());
+            httpGet.setHeader("Authorization", String.format("Bearer %s", bearerToken));
+            httpGet.setHeader("Content-Type", "application/json");
 
-        HttpResponse response = httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-        if (null != entity) {
-            searchResponse = EntityUtils.toString(entity, "UTF-8");
+            HttpResponse response = httpClient.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            if (null != entity) {
+                searchResponse = EntityUtils.toString(entity, "UTF-8");
+            } else if (null == entity) {// because of a call limit on the api, the response returned might be null
+                throw new Exception("Entity is null");
+            }
+
+            return searchResponse;
+        } catch (Exception exception) {
+
         }
-
-        return searchResponse;
+        return null;
 
     }
 
     // gets the number of tweets on a currency from x days ago,
     // day=7 returns today && day=1 returns 7 days ago
-    public static String getTweetCountString(String currency, int day) throws IOException, URISyntaxException {
-        String bearerToken = BearerToken.token; // you will need your own twitter bearer token
-        String response = getWeekObject(currency, bearerToken);
-        JSONObject jsnobject = new JSONObject(response);
-        String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(day).optString("tweet_count");
-        if (currency.equals(DataBase.link)) {
-            currency = "LINK";
+    public static String getTweetCountString(String currency, int day)
+            throws IOException, URISyntaxException, Exception {
+        try {
+            String bearerToken = BearerToken.token; // you will need your own twitter bearer token
+            String response = getWeekObject(currency, bearerToken);
+            if (response == null) {// because of a call limit on the api, the response returned might be null
+                throw new Exception("Entity is null");
+            }
+            JSONObject jsnobject = new JSONObject(response);
+            String yesterdayTweets = jsnobject.optJSONArray("data").getJSONObject(day).optString("tweet_count");
+            if (currency.equals(DataBase.link)) {
+                currency = "LINK";
+            }
+            WriteToData.jumpLine("getTweetCount " + yesterdayTweets, currency.trim());
+            return yesterdayTweets;
+        } catch (Exception e) {
+
         }
-        WriteToData.jumpLine("getTweetCount " + yesterdayTweets, currency.trim());
-        return yesterdayTweets;
+        return null;
     }
 
     // gets the number of tweets on a currency from x days ago,
     // day=7 returns today && day=1 returns 7 days ago, as a double
-    public static double getTweetCountDouble(String currency, int day) throws IOException, URISyntaxException {
-        String number = getTweetCountString(currency, day);
-        double asDouble = Double.parseDouble(number);
+    public static double getTweetCountDouble(String currency, int day)
+            throws IOException, URISyntaxException, Exception {
+        try {
+            String number = getTweetCountString(currency, day);
+            if (number == null) {// because of a call limit on the api, the response returned might be null
+                throw new Exception("Entity is null");
+            }
+            double asDouble = Double.parseDouble(number);
 
-        return asDouble;
+            return asDouble;
+        } catch (Exception e) {
+
+        }
+        return 0;
     }
 
     // gets the percent of variation of the number of tweets
     // between two days ago and yesterday
-    public static String getTweetsPercentChange(String currency) throws IOException, URISyntaxException {
-        double TweetsTwoDaysAgo = getTweetCountDouble(currency, DataBase.twoDaysAgo);
-        double TweetsYesterday = getTweetCountDouble(currency, DataBase.yesterday);
+    public static String getTweetsPercentChange(String currency) throws IOException, URISyntaxException, Exception {
+        try {
+            double TweetsTwoDaysAgo = getTweetCountDouble(currency, DataBase.twoDaysAgo);
+            double TweetsYesterday = getTweetCountDouble(currency, DataBase.yesterday);
+            if (TweetsTwoDaysAgo == 0 || TweetsYesterday == 0) {
+                // might be because of a call limit on the api or because percentage is 0
+                // dividing by 0 is not a good idea
+                throw new Exception("Error: TweetsTwoDaysAgo or TweetsYesterday is 0");
+            }
 
-        if (TweetsTwoDaysAgo < TweetsYesterday) { // increase
-            double subtraction = TweetsYesterday - TweetsTwoDaysAgo;
-            double percent = subtraction * 100 / TweetsTwoDaysAgo;
-            double rounded = Math.round(percent * 100.0) / 100.0;
-            String roundedPercentChange = String.valueOf(rounded);
-            // remove if statements
-            if (currency.equals(DataBase.link)) {
-                currency = "LINK";
+            if (TweetsTwoDaysAgo < TweetsYesterday) { // increase
+                double subtraction = TweetsYesterday - TweetsTwoDaysAgo;
+                double percent = subtraction * 100 / TweetsTwoDaysAgo;
+                double rounded = Math.round(percent * 100.0) / 100.0;
+                String roundedPercentChange = String.valueOf(rounded);
+                // remove if statements
+                if (currency.equals(DataBase.link)) {
+                    currency = "LINK";
+                }
+                WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
+                return roundedPercentChange;
+            } else if (TweetsTwoDaysAgo == TweetsYesterday) { // no change
+                String percentChange = "0.00";
+                if (currency.equals(DataBase.link)) {
+                    currency = "LINK";
+                }
+                WriteToData.jumpLine("getTweetsPercentChange " + percentChange, currency.trim());
+                return percentChange;
+            } else { // decrease
+                double subtraction = TweetsTwoDaysAgo - TweetsYesterday;
+                double percent = subtraction * 100 / TweetsTwoDaysAgo;
+                double rounded = Math.round(percent * 100.0) / 100.0;
+                String roundedPercentChange = "-" + String.valueOf(rounded);
+                if (currency.equals(DataBase.link)) {
+                    currency = "LINK";
+                }
+                WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
+                return roundedPercentChange;
+
             }
-            WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
-            return roundedPercentChange;
-        } else if (TweetsTwoDaysAgo == TweetsYesterday) { // no change
-            String percentChange = "0.00";
-            if (currency.equals(DataBase.link)) {
-                currency = "LINK";
-            }
-            WriteToData.jumpLine("getTweetsPercentChange " + percentChange, currency.trim());
-            return percentChange;
-        } else { // decrease
-            double subtraction = TweetsTwoDaysAgo - TweetsYesterday;
-            double percent = subtraction * 100 / TweetsTwoDaysAgo;
-            double rounded = Math.round(percent * 100.0) / 100.0;
-            String roundedPercentChange = "-" + String.valueOf(rounded);
-            if (currency.equals(DataBase.link)) {
-                currency = "LINK";
-            }
-            WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
-            return roundedPercentChange;
+        } catch (Exception e) {
 
         }
-
+        return null;
     }
 
     // gets the percent of variation of the number of tweets
     // between two days ago and yesterday, as a double
-    public static double getTweetsPercentChangeAsDouble(String currency) throws IOException, URISyntaxException {
-        String percentage = getTweetsPercentChange(currency);
-        double conversion = Double.parseDouble(percentage);
-        return conversion;
-    }
+    public static double getTweetsPercentChangeAsDouble(String currency)
+            throws IOException, URISyntaxException, Exception {
+        try {
+            String percentage = getTweetsPercentChange(currency);
+            if (percentage == null) {// because of a call limit on the api, the response returned might be null
+                throw new Exception("Entity is null");
+            }
+            double conversion = Double.parseDouble(percentage);
+            return conversion;
+        } catch (Exception e) {
 
+        }
+        return 0;
+    }
 }

@@ -9,6 +9,9 @@ public class RatioCalculator {
     public static String getRatio(String identifier, String currency) throws Exception {
         double pricePercentageNow = CurrenciesPrice.getDailyPercentageAsDouble(identifier);
         double tweetsPercentageYesterday = TweetCount.getTweetsPercentChangeAsDouble(currency);
+        if (pricePercentageNow == 0 || tweetsPercentageYesterday == 0) {
+            return "N/A"; // to avoid division by zero
+        }
         double ratio = pricePercentageNow / tweetsPercentageYesterday;
         double rounded = Math.round(ratio * 100.0) / 100.0;
         String stringedRatio = String.valueOf(rounded);
