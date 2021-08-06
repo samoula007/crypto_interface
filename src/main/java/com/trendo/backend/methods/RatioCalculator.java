@@ -45,14 +45,14 @@ public class RatioCalculator {
         } else { // includes cases in which the tweet entity is null, meaning it is the default
                  // sentiment
             if (tweetsPercentageYesterday >= 0) {
-                sentiment = "darkskin";
+                sentiment = "negative?";
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
                 WriteToData.jumpLine("getSentiment " + sentiment, currency);
                 return sentiment;
             }
-            sentiment = "lightskin";
+            sentiment = "positive?";
             if (currency.equals(DataBase.link)) {
                 currency = "LINK";
             }
