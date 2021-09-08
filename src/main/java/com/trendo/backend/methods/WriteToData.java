@@ -27,7 +27,8 @@ public class WriteToData {
             // create new data object in proper database/collection
             MongoDatabase database = mongoClient.getDatabase(databasename);
             Document doc = new Document();
-            doc.put("date", date);
+            doc.put("day", getDay(date));
+            doc.put("timestamp", getTimestamp(date));
             doc.put("value", value);
 
             database.getCollection(collection).insertOne(doc);
@@ -64,6 +65,16 @@ public class WriteToData {
 
     }
 
+    public static String getDay(String date) {
+        String[] strArray = date.split(" ");
+        return strArray[0];
+    }
+
+    public static String getTimestamp(String date) {
+        String[] strArray = date.split(" ");
+        return strArray[1];
+
+    }
     // Returns currency tag from identifier
     public static String getCurrencyByIdentifier(String identifier) {
         if (identifier.equals(DataBase.uuidETH)) {
