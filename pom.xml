@@ -20,6 +20,23 @@
 	</properties>
 
 	<dependencies>
+		<!--mongodb-->
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-core</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-sync</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>bson</artifactId>
+			<version>4.3.0</version>
+		</dependency>
+		<!--mongodb-->
 		<!-- twitter dependency-->
 		<dependency>
 			<groupId>org.json</groupId>
@@ -60,6 +77,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
 	</dependencies>
 
 	<build>
