@@ -26,7 +26,9 @@ public class CurrencyInfo {
         // Daily price change as string
         String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
                 .getJSONObject("pricePercentChange").optString("change24h");
-        WriteToData.jumpLine("getDailyPricePercentChange " + dailyPercentage, WriteToData.getCurrencyByIdentifier(id));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(id), "pricePercentChange", dailyPercentage,
+                WriteToData.getDate());
         return dailyPercentage;
 
     }
@@ -43,7 +45,9 @@ public class CurrencyInfo {
     public static String getPrice(String identifier) throws Exception {
         double price = getPriceAsDouble(identifier);
         String roundedPrice = String.valueOf(price);
-        WriteToData.jumpLine("getPrice " + roundedPrice, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "price", roundedPrice,
+                WriteToData.getDate());
         return roundedPrice;
 
     }
@@ -79,7 +83,9 @@ public class CurrencyInfo {
     public static String getFFSupply(String identifier) throws Exception {
         double FFSupply = getFFSupplyAsDouble(identifier);
         String roundedFFSupply = String.valueOf(FFSupply);
-        WriteToData.jumpLine("getFFSupply " + roundedFFSupply, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "freeFloatSupply",
+                roundedFFSupply, WriteToData.getDate());
         return roundedFFSupply;
 
     }
@@ -101,7 +107,9 @@ public class CurrencyInfo {
     public static String getTotalSupply(String identifier) throws Exception {
         double totalSupply = getTotalSupplyAsDouble(identifier);
         String roundedTotalSupply = String.valueOf(totalSupply);
-        WriteToData.jumpLine("getTotalSupply " + roundedTotalSupply, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "totalSupply",
+                roundedTotalSupply, WriteToData.getDate());
         return roundedTotalSupply;
 
     }
@@ -123,7 +131,9 @@ public class CurrencyInfo {
     public static String getMarketCap(String identifier) throws Exception {
         double marketCap = getMarketCapAsDouble(identifier);
         String roundedMarketCap = String.valueOf(marketCap);
-        WriteToData.jumpLine("getMarketCap " + roundedMarketCap, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "marketCap", roundedMarketCap,
+                WriteToData.getDate());
         return roundedMarketCap;
 
     }
@@ -135,8 +145,9 @@ public class CurrencyInfo {
         // Daily marketCap change as string
         String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
                 .getJSONObject("marketCapPercentChange").optString("change24h");
-        WriteToData.jumpLine("getDailyMarketCapPercentChange " + dailyPercentage,
-                WriteToData.getCurrencyByIdentifier(id));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(id), "marketCapPercentChange",
+                dailyPercentage, WriteToData.getDate());
         return dailyPercentage;
 
     }
@@ -166,8 +177,9 @@ public class CurrencyInfo {
     public static String getTotalMarketCap(String identifier) throws Exception {
         double totalMarketCap = getTotalMarketCapAsDouble(identifier);
         String roundedTotalMarketCap = String.valueOf(totalMarketCap);
-        WriteToData.jumpLine("getTotalMarketCap " + roundedTotalMarketCap,
-                WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "totalMarketCap",
+                roundedTotalMarketCap, WriteToData.getDate());
         return roundedTotalMarketCap;
 
     }
@@ -179,8 +191,9 @@ public class CurrencyInfo {
         // Daily totalMarketCap change as string
         String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
                 .getJSONObject("totalMarketCapPercentChange").optString("change24h");
-        WriteToData.jumpLine("getDailytotalMarketCapPercentChange " + dailyPercentage,
-                WriteToData.getCurrencyByIdentifier(id));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(id), "totalMarketCapPercentChange",
+                dailyPercentage, WriteToData.getDate());
         return dailyPercentage;
 
     }
@@ -210,7 +223,9 @@ public class CurrencyInfo {
     public static String getVolume(String identifier) throws Exception {
         double volume = getVolumeAsDouble(identifier);
         String roundedVolume = String.valueOf(volume);
-        WriteToData.jumpLine("getVolume " + roundedVolume, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(identifier), "volume", roundedVolume,
+                WriteToData.getDate());
         return roundedVolume;
 
     }
@@ -222,7 +237,9 @@ public class CurrencyInfo {
         // Daily volume change as string
         String dailyPercentage = response.getBody().getArray().getJSONObject(0).optJSONArray("content").getJSONObject(0)
                 .getJSONObject("volumePercentChange").optString("change24h");
-        WriteToData.jumpLine("getVolumePercentage " + dailyPercentage, WriteToData.getCurrencyByIdentifier(id));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(WriteToData.getCurrencyByIdentifier(id), "volumePercentChange", dailyPercentage,
+                WriteToData.getDate());
         return dailyPercentage;
 
     }

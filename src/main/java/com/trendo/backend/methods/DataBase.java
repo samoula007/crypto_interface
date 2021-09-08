@@ -22,18 +22,18 @@ public class DataBase {
     public static String percentage = "&percentChange=true";
     // This one changes each 24h @getToken at
     // "https://rapidapi.com/BraveNewCoin/api/bravenewcoin?endpoint=apiendpoint_d040b5cb-b6da-4628-bb86-fef663f635dc"
-    public static String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVXhNRGhHT0VReE56STVOelJCTTBJM1FrUTVOa0l4TWtRd1FrSTJSalJFTVRaR1F6QTBOZyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYnJhdmVuZXdjb2luLmNvbS8iLCJzdWIiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuYnJhdmVuZXdjb2luLmNvbSIsImlhdCI6MTYyNzQzMTE3MiwiZXhwIjoxNjI3NTE3NTcyLCJhenAiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWSIsInNjb3BlIjoicmVhZDppbmRleC10aWNrZXIgcmVhZDpyYW5raW5nIHJlYWQ6bXdhIHJlYWQ6Z3dhIHJlYWQ6YWdncmVnYXRlcyByZWFkOm1hcmtldCByZWFkOmFzc2V0IHJlYWQ6b2hsY3YgcmVhZDptYXJrZXQtY2FwIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.Ex1Xg-c_qVtjFTE19wkMSUnu5TTva0J7AvIfGLTc_d9I_PqWlSVtRPzl6WiuYCXU9mkXuANSfujpeIOryg4LHv2qZHLPa7H_69yxos5PJvsDTHFy6V6VE7FXkYq6rqq-WTfUEwTtfJj-nsx1rQbKgQjh0pVpVvlmqUG66sR7mxXngqWoLJLyH1DJBRlHjh06mlCsQx8xfi6x93Vl_NjbMyNyAcuCe9i9P3nLpINJW9TDerKp9xVU_gbHhg7wnpIkyHQhPYww9TeEqF8Oe23EkEiSYo5VIa9rzXRVO4UEoN4ht2gvY32Jj5oVcUHtE1Hm-CYMl5HQNM19d6NTXnAy8A";
+    public static String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVXhNRGhHT0VReE56STVOelJCTTBJM1FrUTVOa0l4TWtRd1FrSTJSalJFTVRaR1F6QTBOZyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYnJhdmVuZXdjb2luLmNvbS8iLCJzdWIiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuYnJhdmVuZXdjb2luLmNvbSIsImlhdCI6MTYzMTA0NjMyMywiZXhwIjoxNjMxMTMyNzIzLCJhenAiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWSIsInNjb3BlIjoicmVhZDppbmRleC10aWNrZXIgcmVhZDpyYW5raW5nIHJlYWQ6bXdhIHJlYWQ6Z3dhIHJlYWQ6YWdncmVnYXRlcyByZWFkOm1hcmtldCByZWFkOmFzc2V0IHJlYWQ6b2hsY3YgcmVhZDptYXJrZXQtY2FwIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.G5LuYPmt9jDn2pkqwtMMxYEzjYeexhckbKxoiPW8iknPZiH5DUFA74J2igfgkdlCP4LNkZcr8GlY-aRUYn-fFdpfulviFRH3NCvGPdpdFMA1yomCjF9KiOqJ9Xmr7vi819vbdGsOQce3_45L1u8OEonqjLG9PfJVXQ40cX9kskjGWrKCD4UIkOwMjSRi9KmEtNacrWxNiO8qD8kFTad8bdmmMJ1zvTVCKmAt1hkLatWCqRFP_nIkxu5eOXv-BfwtdEJVW4snsXkNcEKzRyjL-u6-Y1OrYexDOoevJEImOocoMCXdnI0TEatOeF6spR_ZSwgB4Km7TdtcXYf5zXQmQw";
 
     // currencies names for TweetCount
-    public static String eth = " ETH ";
-    public static String doge = " DOGE ";
-    public static String bnb = " BNB ";
-    public static String link = " chainlink ";
-    public static String eos = " EOS ";
+    public static String eth = "ETH";
+    public static String doge = "DOGE";
+    public static String bnb = "BNB";
+    public static String link = "chainlink";
+    public static String eos = "EOS";
     // day index for tweets weekObject
     public static int yesterday = 6;
     public static int twoDaysAgo = 5;
     // filepath to write data in
     public static String filepath = "C:\\Users\\samya\\OneDrive\\Bureau\\Github\\trendo_web\\DataStorage\\";
-
+    public static String mongoDBConnectionString = "mongodb+srv://github:github@cluster0.ihppp.mongodb.net/Mugiwara?retryWrites=true&w=majority";
 }

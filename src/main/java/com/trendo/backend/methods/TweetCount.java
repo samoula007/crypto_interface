@@ -79,7 +79,8 @@ public class TweetCount {
             if (currency.equals(DataBase.link)) {
                 currency = "LINK";
             }
-            WriteToData.jumpLine("getTweetCount " + yesterdayTweets, currency.trim());
+            // write data to mongoDB
+            WriteToData.connectionToMongodb(currency, "tweetCount", yesterdayTweets, WriteToData.getDate());
             return yesterdayTweets;
         } catch (Exception e) {
 
@@ -126,14 +127,17 @@ public class TweetCount {
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
-                WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
+                // write data to mongoDB
+                WriteToData.connectionToMongodb(currency, "tweetPercentChange", roundedPercentChange,
+                        WriteToData.getDate());
                 return roundedPercentChange;
             } else if (TweetsTwoDaysAgo == TweetsYesterday) { // no change
                 String percentChange = "0.00";
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
-                WriteToData.jumpLine("getTweetsPercentChange " + percentChange, currency.trim());
+                // write data to mongoDB
+                WriteToData.connectionToMongodb(currency, "tweetPercentChange", percentChange, WriteToData.getDate());
                 return percentChange;
             } else { // decrease
                 double subtraction = TweetsTwoDaysAgo - TweetsYesterday;
@@ -143,7 +147,9 @@ public class TweetCount {
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
-                WriteToData.jumpLine("getTweetsPercentChange " + roundedPercentChange, currency.trim());
+                // write data to mongoDB
+                WriteToData.connectionToMongodb(currency, "tweetPercentChange", roundedPercentChange,
+                        WriteToData.getDate());
                 return roundedPercentChange;
 
             }

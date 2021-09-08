@@ -18,7 +18,8 @@ public class RatioCalculator {
         if (currency.equals(DataBase.link)) {
             currency = "LINK";
         }
-        WriteToData.jumpLine("getRatio " + stringedRatio, WriteToData.getCurrencyByIdentifier(identifier));
+        // write data to MongoDB
+        WriteToData.connectionToMongodb(currency, "Ratio", stringedRatio, WriteToData.getDate());
         return stringedRatio;
     }
 
@@ -33,14 +34,16 @@ public class RatioCalculator {
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
-                WriteToData.jumpLine("getSentiment " + sentiment, currency);
+                // write data to MongoDB
+                WriteToData.connectionToMongodb(currency, "Sentiment", sentiment, WriteToData.getDate());
                 return sentiment;
             }
             sentiment = "positive";
             if (currency.equals(DataBase.link)) {
                 currency = "LINK";
             }
-            WriteToData.jumpLine("getSentiment " + sentiment, currency);
+            // write data to MongoDB
+            WriteToData.connectionToMongodb(currency, "Sentiment", sentiment, WriteToData.getDate());
             return sentiment;
         } else { // includes cases in which the tweet entity is null, meaning it is the default
                  // sentiment
@@ -49,14 +52,16 @@ public class RatioCalculator {
                 if (currency.equals(DataBase.link)) {
                     currency = "LINK";
                 }
-                WriteToData.jumpLine("getSentiment " + sentiment, currency);
+                // write data to MongoDB
+                WriteToData.connectionToMongodb(currency, "Sentiment", sentiment, WriteToData.getDate());
                 return sentiment;
             }
             sentiment = "lightskin";
             if (currency.equals(DataBase.link)) {
                 currency = "LINK";
             }
-            WriteToData.jumpLine("getSentiment " + sentiment, currency);
+            // write data to MongoDB
+            WriteToData.connectionToMongodb(currency, "Sentiment", sentiment, WriteToData.getDate());
             return sentiment;
         }
 
