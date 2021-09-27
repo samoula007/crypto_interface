@@ -1,5 +1,7 @@
 package com.trendo.backend.methods;
 
+;
+
 //Any data useful for the methods.
 //The bravenewcoin api requires to change your token each 24h
 //If you want to add a new currency to track:
@@ -8,6 +10,18 @@ package com.trendo.backend.methods;
 //call the methods on these newly added data
 //modify the frontend to use these new data
 public class DataBase {
+
+    private String token;
+
+    // to resolve Exception
+    public DataBase() throws Exception {
+        this.token = getToken.getTokenAsString();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
     // currencies identifiers for CurrenciesPrice
     public static String uuidETH = "e991ba77-d384-48ff-b0a4-40e95ef6b7d6";
     public static String uuidDOGE = "7bb2339e-b6eb-408c-836f-2894c8751c6d";
@@ -20,9 +34,6 @@ public class DataBase {
     public static String apiHost = "bravenewcoin.p.rapidapi.com";
     public static String host = "https://bravenewcoin.p.rapidapi.com/market-cap?assetId=";
     public static String percentage = "&percentChange=true";
-    // This one changes each 24h @getToken at
-    // "https://rapidapi.com/BraveNewCoin/api/bravenewcoin?endpoint=apiendpoint_d040b5cb-b6da-4628-bb86-fef663f635dc"
-    public static String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5EVXhNRGhHT0VReE56STVOelJCTTBJM1FrUTVOa0l4TWtRd1FrSTJSalJFTVRaR1F6QTBOZyJ9.eyJpc3MiOiJodHRwczovL2F1dGguYnJhdmVuZXdjb2luLmNvbS8iLCJzdWIiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWUBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9hcGkuYnJhdmVuZXdjb2luLmNvbSIsImlhdCI6MTYzMTE4OTE3MywiZXhwIjoxNjMxMjc1NTczLCJhenAiOiJvQ2RRb1pvSTk2RVJFOUhZM3NRN0ptYkFDZkJmNTVSWSIsInNjb3BlIjoicmVhZDppbmRleC10aWNrZXIgcmVhZDpyYW5raW5nIHJlYWQ6bXdhIHJlYWQ6Z3dhIHJlYWQ6YWdncmVnYXRlcyByZWFkOm1hcmtldCByZWFkOmFzc2V0IHJlYWQ6b2hsY3YgcmVhZDptYXJrZXQtY2FwIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.aV97_8eis5v6W8ImArrY4q27fh9DgqlrnnKfjiJHJyFQYho-eyQC6nlLRk2x2jHHJLUEjYBk3dIFA5PaXeQUHwvlKCYUBdwzW3c_CBp7UokirSzAySt6b2KlJa3kl53v_eiootpGesU9N5lJ3I6JOaLAfsIzoI9kd3l6lKXMgOK0SuB4jxwT3rdEqrCnnT8XIlPCywg6QuXtAfscoSy-CVsF3d-tST_d2OSxsCcUXniBhJ6OkxZD7OjqXv4au_c47FLv4vS06BPWVamv-raGqeoK8AybqUPVmyWQT9ZQPCSoGX0ekn633PL9YxhJ18qLuZVrYUfFKmv5YMRF2qHI1A";
 
     // currencies names for TweetCount
     public static String eth = "ETH";

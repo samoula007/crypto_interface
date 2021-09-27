@@ -10,10 +10,13 @@ public class CurrencyInfo {
 
     // Returning the response object to use in other functions
     public static HttpResponse<JsonNode> createResponse(String id) throws Exception {
+        //Getting a new token from BraveNewCoin API
+        DataBase db = new DataBase();
+        String token = db.getToken();
 
         // Requesting response and returning it
         HttpResponse<JsonNode> response = Unirest.get(DataBase.host + id + DataBase.percentage)
-                .header("authorization", "Bearer " + DataBase.token).header("x-rapidapi-key", DataBase.apiKey)
+                .header("authorization", "Bearer " + token).header("x-rapidapi-key", DataBase.apiKey)
                 .header("x-rapidapi-host", DataBase.apiHost).asJson();
         return response;
 
